@@ -10,7 +10,85 @@ wv_saturation.o \
 macrop_driver.o \
 shr_spfn_mod.o
 
+MPAS_F_OBJS=\
+mpas_atm_core.o \
+mpas_atm_core_interface.o \
+mpas_atm_dimensions.o \
+mpas_atm_threading.o \
+cam_mpas_subdriver.o \
+mpas_atm_time_integration.o \
+mpas_atm_boundaries.o \
+mpas_atm_iau.o \
+mpas_atm_diagnostics_manager.o \
+mpas_atm_diagnostics_utils.o \
+mpas_atm_diagnostic_template.o \
+isobaric_diagnostics.o \
+cloud_diagnostics.o \
+convective_diagnostics.o \
+pv_diagnostics.o \
+soundings.o \
+mpas_vector_operations.o \
+mpas_matrix_operations.o \
+mpas_tensor_operations.o \
+mpas_rbf_interpolation.o \
+mpas_vector_reconstruction.o \
+mpas_spline_interpolation.o \
+mpas_tracer_advection_helpers.o \
+mpas_tracer_advection_mono.o \
+mpas_tracer_advection_std.o \
+mpas_geometry_utils.o \
+mpas_kind_types.o \
+mpas_framework.o \
+mpas_timer.o \
+mpas_timekeeping.o \
+mpas_constants.o \
+mpas_attlist.o \
+mpas_hash.o \
+mpas_sort.o \
+mpas_block_decomp.o \
+mpas_block_creator.o \
+mpas_dmpar.o \
+mpas_abort.o \
+mpas_decomp.o \
+mpas_threading.o \
+mpas_io.o \
+mpas_io_streams.o \
+mpas_bootstrapping.o \
+mpas_io_units.o \
+mpas_stream_manager.o \
+mpas_stream_list.o \
+mpas_forcing.o \
+mpas_c_interfacing.o \
+mpas_derived_types.o \
+mpas_domain_routines.o \
+mpas_field_routines.o \
+mpas_pool_routines.o \
+mpas_log.o \
+mpas_intracoupler.o
+
+MPAS_C_OBJS= \
+xml_stream_parser.o \
+pool_hash.o \
+random_id.o \
+test_functions.o \
+streams_gen.o \
+parse.o \
+utility.o \
+dictionary.o \
+gen_inc.o \
+fortprintf.o \
+regex_matching.o \
+ezxml.o
+
+
 ifeq ($(DEBUG),FALSE)
   $(PUMAS_OBJS): %.o: %.F90
 	  $(FC) -c $(INCLDIR) $(INCS) $(FFLAGS) $(FREEFLAGS) -acc -gpu=cc70,lineinfo,nofma -Minfo=accel $<
+
+  $(MPAS_C_OBJS): %.o : %.c
+	$(CC) -c $(CFLAGS) -DUNDERSCORE $(CPPFLAGS) $(CPPINCLUDES) -I$(MPAS_SRC_ROOT)/dycore/src/external/ezxml -DCORE_ATMOSPHERE -acc -gpu=cc70,lineinfo,nofma -Minfo=accel $<
+
+  $(MPAS_F_OBJS): %.o : %.F
+	$(FC) -c $(CPPFLAGS) $(FFLAGS) $(CPPINCLUDES) $(FCINCLUDES) -DCORE_ATMOSPHERE -acc -gpu=cc70,lineinfo,nofma -Minfo=accel $<
+
 endif
