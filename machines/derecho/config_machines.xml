@@ -51,10 +51,6 @@
         <command name="load">intel-oneapi/2023.2.1</command>
 	<command name="load">mkl</command>
       </modules>
-      <modules compiler="intel-classic">
-        <command name="load">intel-classic/2023.2.1</command>
-	<command name="load">mkl</command>
-      </modules>
       <modules compiler="cray">
         <command name="load">cce/15.0.1</command>
         <command name="load">cray-libsci/23.02.1.1</command>
