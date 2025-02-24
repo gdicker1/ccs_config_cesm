@@ -2,7 +2,7 @@
     <DESC>NCAR AMD EPYC system</DESC>
     <OS>CNL</OS>
     <COMPILERS>intel,gnu,nvhpc,intel-oneapi,intel-classic</COMPILERS>
-    <MPILIBS>mpich</MPILIBS>
+    <MPILIBS>mpich,mpi-serial</MPILIBS>
     <CIME_OUTPUT_ROOT>$ENV{SCRATCH}</CIME_OUTPUT_ROOT>
     <DIN_LOC_ROOT>$ENV{CESMDATAROOT}/inputdata</DIN_LOC_ROOT>
     <DIN_LOC_ROOT_CLMFORC>$ENV{CESMDATAROOT}/inputdata/atm/datm7</DIN_LOC_ROOT_CLMFORC>
