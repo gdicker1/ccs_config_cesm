@@ -103,7 +103,7 @@
         <command name="load">parallelio/2.6.4</command>
         <command name="load">esmf/8.8.0</command>
       </modules>
-      <modules DEBUG="TRUE"  compiler="gnu">
+      <modules DEBUG="TRUE"  compiler="(gnu|nvhpc)">
         <command name="load">parallelio/2.6.2-debug</command>
         <command name="load">esmf/8.6.0-debug</command>
       </modules>
